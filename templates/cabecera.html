@@ -1,0 +1,16 @@
+{% if estados.log == 'false' %}
+<nav class="nav_login">
+  <small><a href="./?action=login" class="btn btn-info btn-lg cent">Iniciar Sesión</a></small>
+</nav>
+{% endif%}
+
+{% if estados.log == 'true' %}
+<nav class="nav_login">
+  <small><a href="controller/cerrarSession.php" class="btn btn-info btn-lg cent">Cerrar Sesión<i class="fa fa-window-close" aria-hidden="true"></i></a></small>
+</nav>
+{% endif%}
+
+<section>
+  <img class="logo_hospital" src="/public/assets/logo2.JPG" alt="">
+  <h1 class="titulo">{{estados.sitio[0]['titulo']}}</h1>
+</section>

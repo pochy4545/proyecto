@@ -1,0 +1,70 @@
+{% extends 'layoutTwig.html' %}
+
+{%block cabecera %} 
+  {% include ('cabecera.html')%}
+{% endblock%}
+
+{%block barra_navegacion %} 
+  {% include ('barra_navegacion.html') %}
+{%endblock%}
+
+{%block cuerpo_pagina%}
+<section>
+
+  <h2 class="container"> Modificar usuario: </h2>
+
+  <div class="container">
+	{% for item in usuario %}
+	<form class="container responsive" action="./controller/modificacionUsuario.php?id={{item.id}}" method="post" >
+
+          <div class="form-group">
+			<label>Nombre:</label>
+			<input type="text" name="nombre" value={{item.first_name}} class="input-sm" pattern="[A-Za-z]{1,20}" title="Solo se admiten letras" required >
+          </div>
+
+		   <div class="form-group">	
+			<label>Apellido:</label>
+			<input type="text" name="apellido" value={{item.last_name}} class="input-sm"  pattern="[A-Za-z]{1,20}" title="Solo se admiten letras" required>
+		   </div>
+
+		    <div class="form-group">
+			<label>Email:</label>
+			<input type="email" name="email" value={{item.email}} class="input-sm" required>
+		   </div>
+
+		   <div class="form-group">
+			<label>Nombre de usuario:</label>
+			<input type="text" name="nombreUsuario" value={{item.username}} class="input-sm" pattern="[A-Za-z]{1,20}" title="Solo se admiten letras y numeros" required >
+           </div>
+
+			{% if error == 1 %}
+			<p class="error"> El nombre de usuario ya existe </p>
+			{% endif %}
+					
+			<div class="form-group">
+			<label>Roles:</label>
+			{% for rol in roles %}
+			    <input type="checkbox" name="rol[]" value="{{rol.id}}"/>{{rol.nombre}}
+			{% endfor %}
+			
+			</div>
+
+		   <div class="form-group">
+			<label>Habilitado:</label>
+			{% if item.activo == '1' %}
+			<input type="checkbox" name="activo" checked>
+			{%endif%}
+
+			{% if item.activo == '0' %}
+			<input type="checkbox" name="activo">
+			{%endif%}
+           </div>
+		
+			<input class="btn btn-default" type="submit" value="Guardar"/>
+
+		</form>
+		{% endfor %}
+	</div>
+
+	</section>
+{% endblock %}

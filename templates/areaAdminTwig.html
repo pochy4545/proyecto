@@ -1,0 +1,117 @@
+{% extends 'layoutTwig.html' %}
+
+{%block cabecera %} 
+  {% include ('cabecera.html')%}
+{% endblock%}
+
+{%block barra_navegacion %} 
+  {% include ('barra_navegacion.html') %}
+{%endblock%}
+
+{%block cuerpo_pagina%}
+
+{% if error==3 %}
+    <div class="alert alert-success">
+    	<p>Usuario creado!</p>
+    </div>
+{% endif %}
+{% if error==2 %}
+
+    <div class="alert alert-success">
+    	<p>Usuario modificado!</p>
+    </div>
+{% endif %}
+
+<div class="text-center">
+    <h2>Bienvenido administrador</h2>
+    <a class="btn btn-info btn-lg cent" href="./?action=altaUsuario">Crear Usuario</a>
+</div>
+
+<div style="margin-left: 1%">
+<form method="post" action="./?action=buscarUsuario">
+  <div class="form-group">
+	<input type="text" name="nombre" id="nombre"  placeholder="Usuario">
+  </div>
+  <div class="form-group">
+	<select name="filtro" class="custom-select">
+	    <option disabled selected>Filtro habilitado/deshabilitado</option>
+		<option value="1">Habilitado</option>
+		<option value="0">Deshabilitado</option>
+	</select>
+  </div>
+  <div class="form-group">
+  <input type="submit" name="buscar" value="Buscar" class="btn btn-info cent">
+  </div>
+</form>
+</div>
+
+<div class="text-center">
+		<ul class="pagination">
+		  {% for i in 1..cantPag%}
+		  <li><a href="/index.php?action=areaAdmin&inicio={{i-1}}">{{i}}</a></li>
+		  {%endfor%}
+		</ul>
+</div>
+{% block section %}
+<section>
+		<h3 class="text-center"> Listado de usuarios:  
+		{% if error == 'no' %}
+			<p><strong> Usuario eliminado correctamente </strong></p>
+		{% endif %}
+		 </h3>
+		<div class="table-responsive">
+		
+			<table class="table table-striped">
+			<tr>
+				<th>Nombre</th>
+				<th>Apellido</th>
+				<th>Nombre De Usuario</th>
+				<th>Email</th>
+				<th>Habilitado/Deshabilitado</th>
+				<th>Rol</th>
+				<th colspan="3">Opciones</th>
+			</tr>
+			<tr>
+			{% set indice = 0%}
+			
+			{% for item in usuarios %}
+
+				{%if  indice > inicio -1 and indice < fin+inicio  %}
+			
+				<th>{{item.first_name}}</th>
+				<th>{{item.last_name}}</th>
+				<th>{{item.username}}</th>
+				<th>{{item.email}}</th>
+				
+				<th>{% if item.activo == 1 %} <p>Habilitado</p>
+				{%else%}
+				 <p>Deshabilitado</p>
+				{%endif%}</th>
+				<th>
+				{%for rol in item.rol_nombre%}
+
+				{{rol}}
+				{%endfor%}
+				</th>
+					<th>
+				<form action="./controller/bajaUsuario.php" method="POST" onsubmit="confirm()">
+
+				<input type="text" name="id" value="{{item.id}}" hidden="true">
+				<input type="submit" name="Borrar" class="fa fa-times" aria-hidden="true" value="borrar">
+				</form>
+				</th>
+
+				<th><a href="./?action=modificarUsuario&id={{item.id}}">Editar</a></th>
+				
+				
+			</tr>
+			{%endif%}
+				{%set indice= indice +1 %}
+			{% endfor %}
+
+			</table>
+			</div>
+		</section>
+{% endblock %}
+
+{%endblock%}

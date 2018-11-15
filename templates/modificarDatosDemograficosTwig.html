@@ -1,0 +1,93 @@
+{% extends 'layoutTwig.html' %}
+
+{%block cabecera %} 
+  {% include ('cabecera.html')%}
+{% endblock%}
+
+{%block barra_navegacion %} 
+  {% include ('barra_navegacion.html') %}
+{%endblock%}
+
+{%block cuerpo_pagina%}
+
+	<div class="container responsive">
+  		<h2> Modificar datos demográficos: </h2>
+  	</div>
+
+  	<div class="container responsive">
+
+  	  {% for item in datos %}
+  		<form method="POST" action="../controller/modificarDatosDemograficos.php">
+
+  			<div class="form-group">
+  				<label>Posee heladera?</label>
+          {% if item.heladera == 1 %}
+  				<input type="radio" name="heladera" value="1" checked />si
+  				<input type="radio" name="heladera" value="0" />no
+          {% else %}
+          <input type="radio" name="heladera" value="1" />si
+          <input type="radio" name="heladera" value="0" checked/>no
+          {% endif %}
+  			</div>
+
+  			<div class="form-group">
+  				<label>Posee electricidad?</label>
+          {% if item.electricidad == 1 %}
+  				 <input type="radio" name="electricidad" value="1" checked />si
+  				 <input type="radio" name="electricidad" value="0" />no
+          {% else %}
+           <input type="radio" name="electricidad" value="1" />si
+           <input type="radio" name="electricidad" value="0" checked />no
+          {% endif %}
+  			</div>
+
+  			<div class="form-group">
+
+  				<label>Posee mascotas?</label>
+          {%  if item.mascota == 1 %}
+  				<input type="radio" name="mascotas" value="1" checked />si
+           <input type="radio" name="mascotas" value="0" />no
+          {% else %}
+           <input type="radio" name="mascotas" value="1" />si
+           <input type="radio" name="mascotas" value="0" checked />no
+          {% endif %}
+  			</div>
+
+  			<div class="form-group">
+  			    <label>Seleccione tipo de vivienda:</label>
+  				<select name="vivienda" id="vivienda">
+  					<option label="Seleccione una opcion" selected>  </option>
+  					{% for key, item in vivienda%}
+            <option value="{{key}}">{{item}}</option>
+           {%endfor%}
+  				</select>
+  			</div>
+
+  			<div class="form-group">
+  			    <label>Seleccione tipo de calefacción:</label>
+  				<select name="calefaccion" id="calefaccion">
+  					<option label="Seleccione una opcion" disabled selected>  </option>
+  					{% for key, item in calefacion%}
+          <option value="{{key}}">{{item}}</option>
+           {%endfor%}
+  				</select>
+  			</div>
+
+  			<div class="form-group">
+  			    <label>Seleccione tipo de agua:</label>
+  				<select name="agua" id="agua">
+  					<option label="Seleccione una opcion" disabled selected>  </option>
+            {% for key, item in agua%}
+            <option value="{{key}}">{{item}}</option>
+            {%endfor%}
+  				</select>
+  			</div>
+  			<input type="text" name="id" value="{{id}}" hidden>
+  			<input class="btn btn-default" type="submit" value="Enviar">
+
+  		</form>
+  		{% endfor %}
+  	</div>
+  </section>
+
+{% endblock %}

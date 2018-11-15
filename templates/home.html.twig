@@ -1,0 +1,15 @@
+{% extends 'layoutTwig.html'%}
+
+{%block cabecera %}
+  {% include ('cabecera.html')%}
+{% endblock%}
+
+{%block barra_navegacion %}
+  {% include ('barra_navegacion.html') %}
+{%endblock%}
+{%block cuerpo_pagina %}
+{% if mensaje.mensaje is defined%}
+  <p class="error">{{mensaje.mensaje}}</p>
+{% endif %}
+  {%include ('cuerpo_pagina.html')%}
+{%endblock%}

@@ -1,0 +1,48 @@
+{% extends 'layoutTwig.html' %}
+
+{%block cabecera %} 
+  {% include ('cabecera.html')%}
+{% endblock%}
+
+{%block barra_navegacion %} 
+  {% include ('barra_navegacion.html') %}
+{%endblock%}
+
+{%block cuerpo_pagina%}
+
+        <h3 class="text-center"> Resultados de la búsqueda... </h3>
+        
+        <div class="table-responsive">
+		
+			<table class="table table-striped">
+			<tr>
+				<th>Apellido</th>
+				<th>Nombre</th>
+				<th>Fecha De Nacimiento</th>
+				<th>Genero</th>
+				<th>Tipo Doc</th>
+				<th>Numero</th>
+				<th>Domicilio</th>
+				<th>Telefono</th>
+				<th>Obra Social</th>
+			</tr>
+			<tr>
+
+			{% for item in pacientes %}
+
+				<th>{{item.apellido}}</th>
+				<th>{{item.nombre}}</th>
+				<th>{{item.fechaDeNacimiento}}</th>
+				<th>{{item.genero}}</th>
+				<th>{{item.tipoDoc}}</th>
+				<th>{{item.numero}}</th>
+				<th>{{item.domicilio}}</th>
+				<th>{{item.telefono}}</th>
+				<th>{{item.obraSocial}}</th>
+				<th><a href="./?action=modificarPaciente&id={{item.id}}">Editar</a></th>
+			</tr>
+				{%endfor%}
+			</table>
+			</div>
+
+{%endblock%}

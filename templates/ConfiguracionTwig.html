@@ -1,0 +1,56 @@
+{% extends 'layoutTwig.html' %}
+
+{%block cabecera %} 
+  {% include ('cabecera.html')%}
+{% endblock%}
+
+{%block barra_navegacion %} 
+  {% include ('barra_navegacion.html') %}
+{%endblock%}
+
+{%block cuerpo_pagina%}
+
+<section>
+		<h2 class="container responsive"> Configuracion Del Sitio: </h2>
+
+		<div class="container responsive">
+
+		<form class="form-group" action="./controller/configuracion.php" method="POST" >
+
+            <div class="form-group">
+			<label>Titulo:</label>
+			<input type="text" class="input-sm" name="nombre" id="nombre" required value="{{estados.sitio[0]['titulo']}}" ></input>
+			</div>
+
+			<div class="form-group">
+			<label>Descripción:</label>
+			<input type="text"  class="input-sm" name="descripcion" id="descripcion" required value="{{estados.sitio[0]['descripcion']}}"></input>
+			</div>
+
+			<div class="form-group">
+			<label>Mail De Contacto:</label>
+			<input type="text" class="input-sm" name="email" id="email"  required value="{{estados.sitio[0]['email']}}"></input>
+			</div>
+
+			<div class="form-group">
+			<label>Cantidad de paginas para visualizar:</label>
+			<input type="number" class="input-sm" name="pagina_cant" required value="{{estados.sitio[0]['pagina_cant']}}"></input>
+			</div>
+
+			<div class="form-group">
+				<label>Habilitado:</label>
+				{% if estados.sitio[0]['activo'] == '1' %}
+				<input type="checkbox" name="activo" id="activo" checked>
+				{%endif%}
+				{% if estados.sitio[0]['activo'] == '0' %}
+				<input type="checkbox" name="activo" id="activo">
+				{%endif%}
+
+            </div>
+            
+			<input class="btn btn-default" type="submit" value="Guardar">
+		</form>
+
+		</div>
+</section>
+{% endblock %}

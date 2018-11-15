@@ -1,0 +1,37 @@
+{% extends 'layoutTwig.html' %}
+
+{%block cabecera %} 
+  {% include ('cabecera.html')%}
+{% endblock%}
+
+{%block barra_navegacion %} 
+  {% include ('barra_navegacion.html') %}
+{%endblock%}
+
+{%block cuerpo_pagina%}
+
+   <section >
+     <form  action="controller/login.php" method="post" class="login_hospital">
+       <label> Usuario: </label>
+       <input type="text" name="usuario" 
+       pattern="[A-Za-z1-9]{1,20}"
+       value="" placeholder="Usuario" 
+       required>
+       <label> Contraseña: </label>
+       <input type="password" name="contraseña"
+       pattern="[A-Za-z1-9]{1,20}"
+        value="" placeholder="Contraseña" required>
+       <input type="submit" name="enviar" value="Enviar" class="submit_login mas_info">
+     </form>
+     <div>
+       {% if error == 1 %}
+                  <p class="error"> Usuario o contraseña incorrectos, intente nuevamente </p>
+                {% endif %}
+                {% if error == 2  %}
+                  <p class="error"> El usuario se encuentra inhabilitado para acceder al sitio </p>
+                {% endif %}
+     </div>
+   </section>
+
+{%endblock%}
+ 

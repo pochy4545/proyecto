@@ -1,0 +1,104 @@
+{% extends 'layoutTwig.html' %}
+
+{%block cabecera %} 
+  {% include ('cabecera.html')%}
+{% endblock%}
+
+{%block barra_navegacion %} 
+  {% include ('barra_navegacion.html') %}
+{%endblock%}
+
+{%block cuerpo_pagina%}
+
+<section>
+
+{% if error == 1 %}
+    <div class="alert alert-warning">
+    	<p>Complete todos los campos obligatorios!</p>
+    </div>
+{% endif %}
+	
+	<h2 class="container">Cargar Historia Clínica:</h2>
+	<div class="container">
+		<form action="./controller/cargarHistoriaClinica.php" method="post">
+
+			<div class="form-group">
+				<label>Fecha de la consulta:</label>
+				<input class="input-sm" type="date" name="fecha" placeholder="Fecha" required>
+			</div>
+
+			<div class="form-group">
+				<label>Peso:</label>
+				<input class="input-sm" type="number" name="peso" placeholder="Peso" required>
+			</div>
+
+			<div class="form-group">
+				<label>Vacunas completas?</label>
+				<input type="radio" name="vacunas" value="1">Si
+				<input type="radio" name="vacunas" value="0">No
+			</div>
+
+			<div class="form-group">
+				<label>Vacunas - observaciones</label>
+				<input class="input-sm" type="text" name="vacunasObs" placeholder="Vacunas observaciones" required>
+			</div>
+
+			<div class="form-group">
+				<label>Maduración acorde?</label>
+				<input type="radio" name="maduracion" value="1">Si
+				<input type="radio" name="maduracion" value="0">No
+			</div>
+
+			<div class="form-group">
+				<label>Maduración - observaciones</label>
+				<input class="input-sm" type="text" name="maduracionObs" placeholder="Maduración observaciones" required>
+			</div>
+
+			<div class="form-group">
+				<label>Exámen físico normal?</label>
+				<input type="radio" name="fisico" value="1">Si
+				<input type="radio" name="fisico" value="0">No
+			</div>
+
+			<div class="form-group">
+				<label>Exámen físico - observaciones</label>
+				<input class="input-sm" type="text" name="fisicoObs" placeholder="Exámen observaciones" required>
+			</div>
+
+			<div class="form-group">
+				<label>:PC (percentilo cefálico):</label>
+				<input class="input-sm" type="number" name="pc" placeholder="percentilo cefálico">
+			</div>
+
+			<div class="form-group">
+				<label>PPC (percentilo perímetro cefálico):</label>
+				<input class="input-sm" type="number" name="ppc" placeholder="percentilo perímetro cefálico">
+			</div>
+
+			<div class="form-group">
+				<label>Talla:</label>
+				<input class="input-sm" type="number" name="talla" placeholder="Talla">
+			</div>
+
+			<div class="form-group">
+				<label>Alimentación:</label>
+				<input class="input-sm" type="text" name="alimentacion" placeholder="Alimentación">
+			</div>
+
+			<div class="form-group">
+				<label>Observaciones generales:</label>
+				<input class="input-sm" type="text" name="observaciones" placeholder="Observaciones generales">
+			</div>
+
+			 <input type="text" name="id_paciente" value="{{id}}" hidden>
+			 <input type="text" name="id_usuario" value="" hidden>
+
+			<div>
+				<input class="btn btn-default" type="submit" value="Enviar">
+			</div>
+
+		</form>
+	</div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends 'layoutTwig.html' %}
+
+{%block cabecera %} 
+  {% include ('cabecera.html')%}
+{% endblock%}
+
+{%block barra_navegacion %} 
+  {% include ('barra_navegacion.html') %}
+{%endblock%}
+
+{%block cuerpo_pagina%}
+<section>
+		<div class="container">
+			<h3> Ingrese usuario: </h3>
+		</div>
+		<div class="container responsive">
+	   
+		{% if error == 1 %}
+			<p><strong> El nombre de usuario ya existe </strong></p>
+		{% endif %}
+		{% if error == 2 %}
+			<p><strong> Debe seleccionar un rol como mínimo </strong></p>
+		{% endif %}
+		<form class="container responsive" action="controller/cargarusuario.php" method="post" >
+           
+            <div class="form-group">
+			    <label>Nombre:</label>
+				<input type="text" class="input-sm" name="nombre" placeholder="Nombre" pattern="[A-Za-z]{1,20}" title="Solo se admiten letras" required >
+			</div>
+			
+			<div class="form-group">
+				<label>Apellido:</label>
+				<input type="text" class="input-sm" name="apellido" placeholder="Apellido" pattern="[A-Za-z]{1,20}" title="Solo se admiten letras" required>
+			</div>
+			<div class="form-group">
+				<label>Nombre de usuario:</label>
+				<input type="text" class="input-sm" name="nombreUsuario" placeholder="Nombre de usuario" pattern="[A-Za-z]{1,20}" title="Solo se admiten letras" required >
+
+			
+			</div>
+
+			<div class="form-group">
+				<label>Email:</label>
+				<input type="email" class="input-sm" name="email" placeholder="Mail" required>
+			</div>
+
+            
+
+			<div class="form-group">
+				<label>Contraseña:</label>
+				<input type="password" class="input-sm" name="contraseña"  placeholder="Contraseña"  title="Solo se admiten letras y numeros" required>
+			</div>
+			<script type="text/javascript">
+			
+			</script>
+
+			<label>Roles:</label>
+			<div class="checkbox-group required">
+			{% for rol in roles %}
+				<input type="checkbox" name="rol[]" value="{{rol.id}}" />{{rol.nombre}}
+			{% endfor %}
+			</div>
+
+			<div class="form-group">
+				<label>Habilitado:</label>
+				<input type="checkbox" name="activo">
+            </div>
+
+			<input class="btn btn-default" type="submit" value="Enviar" onclick="myFunction();">
+		</form>
+
+	</div>
+
+	</section>
+{% endblock %}

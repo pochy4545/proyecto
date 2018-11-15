@@ -1,0 +1,21 @@
+{% extends 'layoutTwig.html' %}
+
+{%block cabecera %}
+  {% include ('cabecera.html')%}
+{% endblock%}
+
+{%block barra_navegacion %}
+  {% include ('barra_navegacion.html') %}
+{%endblock%}
+
+{%block cuerpo_pagina%}
+<div style="width:50%">
+
+
+<div id="container" style="min-width: 310px; max-width: 600px; margin: 0 auto"></div>
+<li id="datosDemograficos" onclick="datosDemograficos({{datos.aguaCorriente}},{{datos.aguaPozo}});"><a href="#container">Gráfico de datos demográficos - Tipo de agua</a></li>
+
+
+</div>
+</div>
+{%endblock%}

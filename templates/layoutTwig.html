@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <title>Hospital Gutierrez</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+  <link rel="stylesheet" type="text/css" href="/public/css/styles.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <!--<script type="text/javascript" src="/public/js/Chart.min.js"></script>-->
+  <!--<script src ="https://code.highcharts.com/highcharts.src.js"> </script>-->
+   <script src="/public/js/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="/public/js/bower_components/highcharts/highcharts.js"></script>
+   <script src="/public/js/bower_components/highcharts/modules/exporting.js"></script>
+  <script type="text/javascript" src="/public/js/scripts.js"></script>
+  <script type="text/javascript" src="/public/js/script.js"></script>
+  <script type="text/javascript" src="/public/js/charts.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../public/font/css/font-awesome.min.css">
+  
+ 
+
+
+</head>
+<body>
+<header class="cabecera_principal">
+  {%block cabecera %} {% endblock%}
+ </header>
+   {%block barra_navegacion %} {%endblock%}
+
+  {%block cuerpo_pagina %}
+  {%endblock%}
+
+
+
+{% block footer %}
+{% include ('footerTwig.html')%}
+{%endblock%}
+</body>
+</html>

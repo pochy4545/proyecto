@@ -1,0 +1,33 @@
+
+{% extends 'layoutTwig.html' %}
+
+{%block cabecera %}
+  {% include ('cabecera.html')%}
+{% endblock%}
+
+{%block barra_navegacion %}
+  {% include ('barra_navegacion.html') %}
+{%endblock%}
+
+{%block cuerpo_pagina%}
+
+
+ 
+<div style="width:50%">
+
+{% if pesos.paciente.genero == 2 %}
+
+ <li id="ccm" onclick="ccm({{pesos.dataPaciente}});"><a href="#chart">Gráfico de la evolución del peso de mujeres hasta 13 semanas</a></li>
+
+ {% else %}
+
+   <li id="cch" onclick="cch({{pesos.dataPaciente}});"><a href="#chart">Gráfico de la evolución del peso de hombres hasta 13 semanas</a></li>
+
+ {% endif %}
+
+  <div id="chart" style="margin-bottom: 5%">
+</div>
+</div>
+
+
+{%endblock%}

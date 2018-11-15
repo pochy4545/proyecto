@@ -1,0 +1,84 @@
+{% extends 'layoutTwig.html' %}
+
+{%block cabecera %}
+  {% include ('cabecera.html')%}
+{% endblock%}
+
+{%block barra_navegacion %}
+  {% include ('barra_navegacion.html') %}
+{%endblock%}
+
+{%block cuerpo_pagina%}
+
+{% if id is not empty %}
+<div class="alert alert-success">
+  <p>Se ha cargado el paciente correctamente</p>
+</div>
+  <section>
+
+  	<div class="container responsive">
+  		<h2> Ingrese los datos demográficos: </h2>
+  	</div>
+
+  	<div class="container responsive">
+  		<form method="post" action="../controller/cargarDatosDemograficos.php">
+
+  			<div class="form-group">
+  				<label>Posee heladera?</label>
+  				<input type="radio" name="heladera" value="1" />si
+  				<input type="radio" name="heladera" value="0" />no
+  			</div>
+
+  			<div class="form-group">
+  				<label>Posee electricidad?</label>
+  				<input type="radio" name="electricidad" value="1" />si
+  				<input type="radio" name="electricidad" value="0" />no
+  			</div>
+
+  			<div class="form-group">
+  				<label>Posee mascotas?</label>
+  				<input type="radio" name="mascotas" value="1" />si
+  				<input type="radio" name="mascotas" value="0" />no
+  			</div>
+
+  			<div class="form-group">
+  			    <label>Seleccione tipo de vivienda:</label>
+  				<select name="vivienda" id="vivienda">
+  					<option label="Seleccione  una opcion" disabled selected>  </opti on>
+  					{% for key, item in vivienda%}
+            <option value="{{key}}">{{item}}</option>
+           {%endfor%}
+  				</select>
+  			</div>
+
+  			<div class="form-group">
+  			    <label>Seleccione tipo de calefacción:</label>
+  				<select name="calefaccion" id="calefaccion">
+  					<option label="Seleccione una opcion" disabled selected>  </option>
+  					{% for key, item in calefacion%}
+          <option value="{{key}}">{{item}}</option>
+           {%endfor%}
+  				</select>
+  			</div>
+
+  			<div class="form-group">
+  			    <label>Seleccione tipo de agua:</label>
+  				<select name="agua" id="agua">
+  					<option label="Seleccione una opcion" disabled selected>  </option>
+            {% for key, item in agua%}
+            <option value="{{key}}">{{item}}</option>
+            {%endfor%}
+
+  				</select>
+  			</div>
+        <input type="text" name="id_paciente" value="{{id}}" hidden>
+  			<input class="btn btn-default" type="submit" value="Enviar">
+
+  		</form>
+  	</div>
+
+  </section>
+{%else%}
+  <p> Debe ingresar el paciente</p>
+{%endif%}
+{% endblock %}

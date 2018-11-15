@@ -1,0 +1,66 @@
+{% extends 'layoutTwig.html' %}
+
+{%block cabecera %}
+  {% include ('cabecera.html')%}
+{% endblock%}
+
+{%block barra_navegacion %}
+  {% include ('barra_navegacion.html') %}
+{%endblock%}
+
+{%block cuerpo_pagina%}
+
+<div class="container">
+	<h3>Historia clínica - {{paciente[0].nombre}} {{paciente[0].apellido}}</h3>
+</div>
+
+<div class="table-responsive">
+	<table class="table table-striped">
+		<tr>
+			<th>Fecha control</th>
+			<th>Peso</th>
+			<th>Vacunas</th>
+			<th>Observaciones</th>
+			<th>Maduración</th>
+			<th>Observaciones</th>
+			<th>Exámen físico</th>
+			<th>Observaciones</th>
+			<th>PC</th>
+			<th>PPC</th>
+			<th>Talla</th>
+			<th>Alimentación</th>
+			<th>Obs. generales</th>
+			<th>Opciones</th>
+		</tr>
+
+        <tr>
+        	{% for item in historia %}
+		
+		    <th>{{item.fecha}}</th>
+		    <th>{{item.peso}}</th>
+		    <th>{{item.vacunas_completas}}</th>
+		    <th>{{item.vacunas_obs}}</th>
+		    <th>{{item.maduracion_acorde}}</th>
+		    <th>{{item.maduracion_obs}}</th>
+		    <th>{{item.ex_fisico_normal}}</th>
+		    <th>{{item.ex_fisico_observaciones}}</th>
+		    <th>{{item.pc}}</th>
+		    <th>{{item.ppc}}</th>
+		    <th>{{item.talla}}</th>
+		    <th>{{item.alimentacion}}</th>
+		    <th>{{item.observaciones_generales}}</th>
+		    <th>
+		    	<form action="./controller/bajaControlSalud.php" method="POST">
+		    		<input type="text" name="id" id="id" value="{{item.id}}" hidden>
+		    		<input type="submit" value="eliminar"><i class="fa fa-times" aria-hidden="true"></i></input>
+		    	</form>
+				<a href="./?action=modificarControlSalud&id={{item.id}}"><i class="fa fa-pencil-square" aria-hidden="true"></i></a>
+			</th>
+
+        </tr>
+        {%endfor%}
+	</table>
+</div>
+
+
+{% endblock %}

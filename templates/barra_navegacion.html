@@ -1,0 +1,17 @@
+
+<nav class="topnav" id="myTopnav">
+      <a href="/index.php">Inicio</a>
+
+       {% if estados.rolAdm == 'true' %}
+      <a href="/?action=areaAdmin">Administración</a>
+      <a href="/?action=Configuracion">Configuración Sitio</a>
+      {% endif%}
+
+      {% if estados.rolRecep == 'true' or estados.rolPdia == 'true' %}
+      <a href="/?action=areaPaciente">Listar pacientes</a>
+      <a href="/?action=datosDemograficos">Ver Datos Demográficos</a>
+      {% endif%}
+      
+
+      <a class="icon" onclick="myFunction()">&#9776;</a>
+   </nav>

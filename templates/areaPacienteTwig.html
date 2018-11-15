@@ -1,0 +1,80 @@
+{% extends 'layoutTwig.html' %}
+
+{%block cabecera %}
+  {% include ('cabecera.html')%}
+{% endblock%}
+
+{%block barra_navegacion %}
+  {% include ('barra_navegacion.html') %}
+{%endblock%}
+
+{%block cuerpo_pagina%}
+<br>
+<div class="text-center">
+{% if estados.rolRecep == 'true' or estados.rolPdia == 'true' %}
+<a class="btn btn-info btn-lg cent" href="./?action=altaPaciente">Registrar Paciente</a>
+{%endif%}
+</div>
+{% block section %}
+<div style="margin-left: 1%">
+<form method="post" action="./?action=buscarPaciente">
+	<input type="text" name="nombre" id="nombre" >
+	<input type="submit" name="buscar" value="buscar" class="btn btn-info cent">
+</form>
+</div>
+<section>
+		<h3 class="text-center"> Listado de Pacientes</h3>
+
+		<div class="table-responsive">
+			<table class="table table-striped">
+			<tr>
+				<th>Apellido</th>
+				<th>Nombre</th>
+				<th>Fecha De Nacimiento</th>
+				<th>Genero</th>
+				<th>Tipo Doc</th>
+				<th>Numero</th>
+				<th>Domicilio</th>
+				<th>Telefono</th>
+				<th>Obra Social</th>
+				<th>Historia Clínica</th>
+                <th>Peso</th>
+                <th>Talla</th>
+                <th>PPC</th>
+                <th>Opciones</th>
+			</tr>
+			<tr>
+
+			{% for item in pacientes %}
+
+				<th>{{item.apellido}}</th>
+				<th>{{item.nombre}}</th>
+				<th>{{item.fechaDeNacimiento}}</th>
+				<th>{{item.genero}}</th>
+				<th>{{item.tipoDoc}}</th>
+				<th>{{item.numero}}</th>
+				<th>{{item.domicilio}}</th>
+				<th>{{item.telefono}}</th>
+				<th>{{item.obraSocial}}</th>
+				<th><a href="./?action=cargarHistoriaClinica&id={{item.id}}"><i class="fa fa-plus" aria-hidden="true"></i>Control</a>
+				    <a href="./?action=verHistoriaClinica&id={{item.id}}">Ver</a></th>
+        <th><a href="./?action=curvaDeCrecimiento&id={{item.id}}"><i class="fa fa-line-chart" aria-hidden="true"></i></a></th>
+        <th><a href="./?action=curvaDeTalla&id={{item.id}}"><i class="fa fa-line-chart" aria-hidden="true"></i></a></th>
+        <th><a href="./?action=curvaDePPC&id={{item.id}}"><i class="fa fa-line-chart" aria-hidden="true"></i></a></th>
+				<th>
+				<form action="./controller/bajaPaciente.php" method="POST" onsubmit="confirm()">
+
+				<input type="text" name="id" value="{{item.id}}" hidden="true">
+				<input type="submit" name="Borrar" class="fa fa-times" aria-hidden="true" value="borrar">
+				</form>
+				</th>
+				<th>
+				<a href="./?action=modificarPaciente&id={{item.id}}"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></th>
+
+			</tr>
+				{%endfor%}
+			</table>
+			</div>
+		</section>
+{% endblock %}
+{% endblock %}

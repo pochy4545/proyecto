@@ -1,0 +1,79 @@
+{% extends 'layoutTwig.html' %}
+
+{%block cabecera %} 
+  {% include ('cabecera.html')%}
+{% endblock%}
+
+{%block barra_navegacion %} 
+  {% include ('barra_navegacion.html') %}
+{%endblock%}
+
+{%block cuerpo_pagina%}
+<section>
+		<h2 class=""> Modificar Paciente: </h2>
+		<div class="container">
+		{% for item in paciente %}
+	      <form class="container responsive" action="controller/modificarPaciente.php?id={{item.id}}" method="post" >
+
+            <div class="form-group">
+			<label>Nombre:</label>
+			<input type="text" class="input-sm" name="nombre" id="nombre" value={{item.nombre}} pattern="[A-Za-z]{1,20}" title="Solo se admiten letras" required >
+			  </div>
+			
+			<div class="form-group">
+			<label>Apellido:</label>
+			<input type="text" name="apellido" class="input-sm" value={{item.apellido}} pattern="[A-Za-z]{1,20}" title="Solo se admiten letras" required>
+			</div>
+
+            <div class="form-group">
+			<label>Fecha de nacimiento:</label>
+			<input type="date" name="FechadeNacimiento" value={{item.fechaDeNacimiento}} class="input-sm" title="formato fecha" required>
+			</div>
+
+			<div class="form-group">
+			<label>Genero:</label>
+			<select class="input-sm" name="genero" id="genero">
+				<option value="1">Masculino</option>
+				<option value="2">Femenino</option>
+			</select>
+			</div>
+
+			<div class="form-group">
+			<label>Tipo de Documento:</label>
+			<select  class="input-sm" name="tipoDoc" id="tipoDoc">
+				{% for key, item in tipoDoc%}
+				 <option value="{{key}}">{{item}}</option>
+				 {%endfor%}
+			</select>
+			</div>
+
+			<div class="form-group">
+			<label>Numero:</label>
+			<input type="number" name="numero" id="numero" value={{item.numero}} class="input-sm"  title="Solo se admiten numeros" required>
+			</div>
+
+			<div class="form-group">
+			<label>Domicilio:</label>
+			<input type="text" name="domicilio" id="domicilio" value={{item.domicilio}} class="input-sm"  title="Solo se admiten letras y numeros" required>
+			</div>
+
+			<div class="form-group">
+			<label>Tel/Cel:</label>
+			<input type="number" name="telefono" id="telefono" value={{item.telefono}} class="input-sm" title="Solo se admiten numeros">
+			</div>
+
+			<div class="form-group">
+			<label>Obra Social:</label>
+			<select class="input-sm" name="obraSocial" id="obraSocial">
+				{% for key, item in obraSocial%}
+				 <option value="{{key}}">{{item}}</option>
+				 {%endfor%}
+			</select>
+			</div>
+
+			<input class="btn btn-default" type="submit" value="Guardar">
+		</form>
+		{% endfor %}
+	</div>
+	</section>
+{% endblock %}

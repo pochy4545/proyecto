@@ -1,0 +1,89 @@
+{% extends 'layoutTwig.html' %}
+
+{%block cabecera %}
+  {% include ('cabecera.html')%}
+{% endblock%}
+
+{%block barra_navegacion %}
+  {% include ('barra_navegacion.html') %}
+{%endblock%}
+
+{%block cuerpo_pagina%}
+
+<a href="./?action=curvaDeDatosDemograficos"><i class="fa fa-line-chart" aria-hidden="true"></i>Curva de Datos Demográficos</a>
+<div class="table-responsive">
+		
+			<table class="table table-striped">
+			<tr>
+				<th>Paciente</th>
+				<th>DNI</th>
+				<th>Heladera</th>
+				<th>Electricidad</th>
+				<th>Mascotas</th>
+				<th>Vivienda</th>
+				<th>Calefacción</th>
+				<th>Agua</th>
+				<th>Opciones</th>
+			</tr>
+			<tr>
+			{% for item in datos %}
+
+				<th>{{item.nombre}}
+				{{item.apellido}}</th>
+
+				<th>{{item.numero}}</th>
+				
+				<th>
+				{% if item.heladera == 1 %}
+				 <p>Si</p>
+				{%else%}
+				 <p>No</p>
+				{%endif%}
+				</th>
+
+				<th>
+				{% if item.electricidad == 1 %}
+				 <p>Si</p>
+				{%else%}
+				 <p>No</p>
+				{%endif%}
+				</th>
+
+				<th>
+				{% if item.mascota == 1 %}
+				 <p>Si</p>
+				{%else%}
+				 <p>No</p>
+				{%endif%}
+				</th>
+
+				<th>{{item.tipo_de_vivienda}}</th>
+
+				<th>{{item.tipo_de_calefaccion}}</th>
+
+				<th>{{item.tipo_de_agua}}</th>
+			  
+
+						<th>
+				<form action="./controller/bajaUsuario.php" method="POST" onsubmit="confirm()">
+
+				<input type="text" name="id" value="{{item.id}}" hidden="true">
+				<input type="submit" name="Borrar" class="fa fa-times" aria-hidden="true" value="borrar">
+				</form>
+				</th>
+				<th><a href="./?action=modificarDatosDemograficos&id={{item.id}}">Editar</a></th>
+				
+				
+			</tr>
+			{% endfor %}
+
+			</table>
+			</div>
+
+
+
+
+
+
+
+{% endblock %}

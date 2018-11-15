@@ -1,0 +1,115 @@
+{% extends 'layoutTwig.html' %}
+
+{%block cabecera %}
+  {% include ('cabecera.html')%}
+{% endblock%}
+
+{%block barra_navegacion %}
+  {% include ('barra_navegacion.html') %}
+{%endblock%}
+
+{%block cuerpo_pagina%}
+
+<section>
+
+    <div class="container">
+	    <h3>Control de salud - Edición</h3>
+    </div>
+	
+	<div class="container">
+		<form action="./controller/editarHistoriaClinica.php" method="post">
+
+			<div class="form-group">
+				<label>Fecha de la consulta:</label>
+				<input class="input-sm" type="date" name="fecha" placeholder="Fecha" value="{{control[0].fecha}}" required>
+			</div>
+
+			<div class="form-group">
+				<label>Peso:</label>
+				<input class="input-sm" type="number" name="peso" placeholder="Peso" value="{{control[0].peso}}" required>
+			</div>
+
+			<div class="form-group">
+				<label>Vacunas completas?</label>
+				{% if control[0].vacunas_completas == '1' %}
+				<input type="radio" name="vacunas" value="1" checked>Si
+				<input type="radio" name="vacunas" value="0">No
+				{% else %}
+				<input type="radio" name="vacunas" value="1">Si
+				<input type="radio" name="vacunas" value="0" checked>No
+				{% endif %}
+			</div>
+
+			<div class="form-group">
+				<label>Vacunas - observaciones</label>
+				<input class="input-sm" type="text" name="vacunasObs" placeholder="Vacunas observaciones" value="{{control[0].vacunas_obs}}" required>
+			</div>
+
+			<div class="form-group">
+				<label>Maduración acorde?</label>
+				{% if control[0].maduracion_acorde == '1' %}
+				<input type="radio" name="maduracion" value="1" checked>Si
+				<input type="radio" name="maduracion" value="0">No
+                {% else %}
+				<input type="radio" name="maduracion" value="1">Si
+				<input type="radio" name="maduracion" value="0" checked>No
+				{% endif %}
+			</div>
+
+			<div class="form-group">
+				<label>Maduración - observaciones</label>
+				<input class="input-sm" type="text" name="maduracionObs" placeholder="Maduración observaciones" value="{{control[0].maduracion_obs}}" required>
+			</div>
+
+			<div class="form-group">
+				<label>Exámen físico normal?</label>
+				{% if control[0].ex_fisico_normal == '1' %}
+				<input type="radio" name="fisico" value="1" checked>Si
+				<input type="radio" name="fisico" value="0">No
+                {% else %}
+				<input type="radio" name="fisico" value="1">Si
+				<input type="radio" name="fisico" value="0" checked>No
+				{% endif %}
+			</div>
+
+			<div class="form-group">
+				<label>Exámen físico - observaciones</label>
+				<input class="input-sm" type="text" name="fisicoObs" placeholder="Exámen observaciones" value="{{control[0].ex_fisico_observaciones}}" required>
+			</div>
+
+			<div class="form-group">
+				<label>:PC (percentilo cefálico):</label>
+				<input class="input-sm" type="number" name="pc" placeholder="percentilo cefálico" value="{{control[0].pc}}">
+			</div>
+
+			<div class="form-group">
+				<label>PPC (percentilo perímetro cefálico):</label>
+				<input class="input-sm" type="number" name="ppc" placeholder="percentilo perímetro cefálico" value="{{control[0].ppc}}">
+			</div>
+
+			<div class="form-group">
+				<label>Talla:</label>
+				<input class="input-sm" type="number" name="talla" placeholder="Talla" value="{{control[0].talla}}">
+			</div>
+
+			<div class="form-group">
+				<label>Alimentación:</label>
+				<input class="input-sm" type="text" name="alimentacion" placeholder="Alimentación" value="{{control[0].alimentacion}}">
+			</div>
+
+			<div class="form-group">
+				<label>Observaciones generales:</label>
+				<input class="input-sm" type="text" name="observaciones" placeholder="Observaciones generales" value="{{control[0].observaciones_generales}}">
+			</div>
+
+			<input type="hidden" name="id" value="{{control[0].id}}">
+
+			<div>
+				<input class="btn btn-default" type="submit" value="Enviar">
+			</div>
+
+		</form>
+	</div>
+</section>
+
+{%endblock%}
